@@ -62,7 +62,17 @@ int		place_piece_hd(struct s_stru s)
 		{
 			s.stop = check_pieceonmap(s, i, j, &same);
 			if (same == 1 && s.stop == 0)
+			{
+				int k;
+
+				k = 0;
+				/*while (s.map[k])
+				{
+					ft_strdel(&s.map[k]);
+					k++;
+				}*/
 				return (put_coord(s, i, j));
+			}
 			same = 0;
 			s.stop = 0;
 			j--;

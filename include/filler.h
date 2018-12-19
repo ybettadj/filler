@@ -49,7 +49,6 @@ typedef struct	s_stru
 
 	int 	stop;
 	int 	tour;
-	int 	good;
 	int 	marker;
 
 }				t_stru;

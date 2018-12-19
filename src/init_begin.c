@@ -31,12 +31,12 @@ int 	size_map_x(struct s_stru s)
 	k = 0;
 	size = 0;
 	str = ft_strnew(6);
-
-	while (ft_isdigit(s.info1[i]) != 1)	
+	while (ft_isdigit(s.info1[i]) != 1)
 		i++;
 	while (ft_isdigit(s.info1[i]) == 1)
 		str[k++] = s.info1[i++];
 	size = ft_atoi(str);
+	ft_strdel(&str);
 	return (size);
 }
 
@@ -59,6 +59,7 @@ int 	size_map_y(struct s_stru s)
 	while (ft_isdigit(s.info1[i]) == 1)
 		str[k++] = s.info1[i++];
 	size = ft_atoi(str);
+	ft_strdel(&str);
 	return (size);
 }
 
@@ -82,6 +83,7 @@ int 	size_piece_x(struct s_stru s)
 		i++;
 	}
 	size = ft_atoi(str);
+	ft_strdel(&str);
 	return (size);
 }
 
@@ -105,21 +107,21 @@ int 	size_piece_y(struct s_stru s)
 	while (ft_isdigit(s.info1[i]) == 1)
 		str[k++] = s.info1[i++];
 	size = ft_atoi(str);
+	ft_strdel(&str);
 	return (size);
 }
 
 int 	start_info(struct s_stru *s)
 {
 	char	*line;
-	char	**tab;
-	int mark;
-	int fd;
 	int i;
 	int x;
+	char *tmp;
 
 	i = 0;
 	x = 0;
-	mark = 0;
+	tmp = NULL;
+	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
 		s->info1 = line;
@@ -145,7 +147,9 @@ int 	start_info(struct s_stru *s)
 		}
 		if (s->tour >= 3 && s->tour < s->map_size_x + 3)
 		{
+			//tmp = s->map[i];
 			s->map[i] = ft_strsub(s->info1, 4, s->map_size_y + 1);
+			//ft_strdel(&tmp);
 			i++;
 		}
 		if (s->tour == s->map_size_x + 3)
@@ -160,30 +164,15 @@ int 	start_info(struct s_stru *s)
 			s->piece[x] = ft_strdup(s->info1);
 			x++;
 		}
-		mark++;
 		s->tour++;
 		if (s->tour > s->piece_x_ini + s->map_size_x + 3 && s->piece_x_ini != 0)
+		{
+			//ft_strdel(&s->info1);
+			ft_strdel(&line);
 			return (0);
+		}
+		//if (s->info1)
+			//ft_strdel(&s->info1);
 	}
 	return (0);
 }
-
-/*	**start_info(const char **argv)
-{
-	char	*line;
-	char	**tab;
-	int fd;
-	int i;
-
-	i = 0;
-	fd = open(argv[1], O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
-		i++;
-	tab = (char **)malloc(sizeof(tab) * (i + 1));
-	fd = open(argv[1], O_RDONLY);
-	ft_strdel(&line);
-	i = 0;
-	while (get_next_line(fd, &line) > 0)
-		tab[i++] = ft_strdup(line);
-	return (tab);
-}*/

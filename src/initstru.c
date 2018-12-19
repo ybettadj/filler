@@ -15,11 +15,11 @@
 void 	initstru(struct s_stru *s)
 {
 	s->info = NULL;
-
+	s->info1 = NULL;
 	s->map = NULL;
 	s->map_size_x = 0;
 	s->map_size_y = 0;	
-
+	s->tour = 0;
 	s->piece = NULL;
 	s->piece_x = 0;
 	s->piece_y = 0;
@@ -27,7 +27,6 @@ void 	initstru(struct s_stru *s)
 	s->piece_y_ini = 0;
 	s->countleft = 0;
 	s->countup = 0;
-	s->good = 0;
 
 	s->count_zone = 0;
 

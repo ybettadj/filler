@@ -108,6 +108,19 @@ char  	**cut_bottom_top(struct s_stru *s, int i, int x, char **tab)
 	return (tab);
 }
 
+void 	free_tab(char ***tab)
+{
+	int f;
+
+	while (*tab[f])
+		f++;
+	while (f >= 0)
+	{
+		ft_strdel(&(*tab[f]));
+		f--;
+	}
+}
+
 int 	cut_piece(struct s_stru *s)
 {
 	int i;
@@ -120,6 +133,7 @@ int 	cut_piece(struct s_stru *s)
 	x = 0;
 	s->marker = 0;
 	tab = (char **)malloc(sizeof(char *) * (s->piece_x_ini + 1));
+	
 	s->piece = cut_bottom_top(&(*s), i, x, tab);
 	s->piece_y = s->piece_y_ini;
 	s->piece_x = s->marker;
@@ -127,5 +141,6 @@ int 	cut_piece(struct s_stru *s)
 		i++;
 	while (cut_right(&(*s),s->piece) != 0)
 		i++;
+	//free_tab(&tab);
 	return (0);
 }

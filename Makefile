@@ -27,7 +27,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 	make -C ./libft/
-	$(CC) -o $(NAME) $(FLAGS) $(LIBFT) $(OBJ)
+	$(CC) -o $(NAME) $(FLAGS) $(LIBFT) $(OBJ) -g
 
 clean :
 	make clean -C ./libft

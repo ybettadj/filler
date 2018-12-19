@@ -6,7 +6,7 @@
 # include <sys/types.h>
 # include <unistd.h>
 # include <limits.h>
-# define BUFF_SIZE 10
+# define BUFF_SIZE 4096
 typedef struct  s_struct
 {
     char        *tmp;
