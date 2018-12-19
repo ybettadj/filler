@@ -12,16 +12,15 @@
 
 #include "../include/filler.h"
 
-int 	check_zone1(struct s_stru s)
+int		check_zone1(struct s_stru s)
 {
-	int i;
-	int j;
-	int x;
+	int	i;
+	int	j;
+	int	x;
 
 	i = 0;
 	j = 0;
 	x = 0;
-
 	while (i <= s.map_size_x / 2)
 	{
 		while (j <= s.map_size_y / 2)
@@ -36,11 +35,11 @@ int 	check_zone1(struct s_stru s)
 	return (x);
 }
 
-int 	check_zone2(struct s_stru s)
+int		check_zone2(struct s_stru s)
 {
-	int i;
-	int j;
-	int x;
+	int	i;
+	int	j;
+	int	x;
 
 	i = 0;
 	x = 0;
@@ -59,11 +58,11 @@ int 	check_zone2(struct s_stru s)
 	return (x);
 }
 
-int 	check_zone3(struct s_stru s)
+int		check_zone3(struct s_stru s)
 {
-	int i;
-	int j;
-	int x;
+	int	i;
+	int	j;
+	int	x;
 
 	i = s.map_size_x - 1;
 	j = 0;
@@ -82,11 +81,11 @@ int 	check_zone3(struct s_stru s)
 	return (x);
 }
 
-int 	check_zone4(struct s_stru s)
+int		check_zone4(struct s_stru s)
 {
-	int i;
-	int j;
-	int x;
+	int	i;
+	int	j;
+	int	x;
 
 	i = s.map_size_x - 1;
 	j = s.map_size_y - 1;
@@ -105,20 +104,20 @@ int 	check_zone4(struct s_stru s)
 	return (x);
 }
 
-int 	check_zone(struct s_stru s)
+int		check_zone(struct s_stru s)
 {
 	int zone1;
 	int zone2;
 	int zone3;
 	int zone4;
+
 	zone1 = check_zone1(s);
 	zone2 = check_zone2(s);
 	zone3 = check_zone3(s);
 	zone4 = check_zone4(s);
 	if (zone1 >= zone2)
-		if (zone1 >= zone3)
-			if (zone1 >= zone4)
-				return (1);
+		if (zone1 >= zone3 && zone1 >= zone4)
+			return (1);
 	if (zone2 >= zone1)
 		if (zone2 >= zone3)
 			if (zone2 >= zone4)
@@ -131,5 +130,5 @@ int 	check_zone(struct s_stru s)
 		if (zone4 >= zone2)
 			if (zone4 >= zone3)
 				return (4);
-	return(0);
+	return (0);
 }

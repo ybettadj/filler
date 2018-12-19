@@ -70,5 +70,16 @@ int 	check_zone(struct s_stru s);
 int		cut_piece(struct s_stru *s);
 int 	cut_right(struct s_stru *s, char **tab);
 int 	cut_left(struct s_stru *s, char **tab);
+int		check_pieceonmap(struct s_stru s, int i, int j, int *same);
+int		place_piece_hd(struct s_stru s);
+int		place_piece_bd(struct s_stru s);
+int		place_piece_hg(struct s_stru s);
+int		place_piece_bg(struct s_stru s);
+int		put_coord(struct s_stru s, int i, int j);
+int		size_map_x(struct s_stru s);
+int		size_map_y(struct s_stru s);
+int		size_piece_x(struct s_stru s);
+int		size_piece_y(struct s_stru s);
+
 
 #endif

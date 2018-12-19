@@ -12,16 +12,16 @@
 
 #include "../include/filler.h"
 
-char 	**sub_piece(struct s_stru *s, char **tab, int b)
+char	**sub_piece(struct s_stru *s, char **tab, int b)
 {
-	int mark;
-	int i;
-	char **tab2;
+	int		mark;
+	int		i;
+	char	**tab2;
 
 	mark = 0;
 	i = 0;
 	tab2 = (char **)malloc(sizeof(char *) * (s->piece_x + 1));
-	while(tab[i] && i < s->piece_x)
+	while (tab[i] && i < s->piece_x)
 	{
 		tab2[mark] = ft_strsub(tab[i], b, s->piece_y);
 		mark++;
@@ -30,10 +30,10 @@ char 	**sub_piece(struct s_stru *s, char **tab, int b)
 	return (tab2);
 }
 
-int 	cut_left(struct s_stru *s, char **tab)
+int		cut_left(struct s_stru *s, char **tab)
 {
-	int i;
-	int mark;
+	int	i;
+	int	mark;
 
 	i = 0;
 	mark = 0;
@@ -48,16 +48,16 @@ int 	cut_left(struct s_stru *s, char **tab)
 		s->countleft++;
 		s->piece_y = s->piece_y_ini - 1;
 		s->piece = sub_piece(&(*s), tab, 1);
-		return(1);
+		return (1);
 	}
 	s->piece = tab;
 	return (0);
 }
 
-int 	cut_right(struct s_stru *s, char **tab)
+int		cut_right(struct s_stru *s, char **tab)
 {
-	int i;
-	int mark;
+	int	i;
+	int	mark;
 
 	i = 0;
 	mark = 0;
@@ -79,16 +79,16 @@ int 	cut_right(struct s_stru *s, char **tab)
 	return (0);
 }
 
-char  	**cut_bottom_top(struct s_stru *s, int i, int x, char **tab)
+char	**cut_bottom_top(struct s_stru *s, int i, int x, char **tab)
 {
-	int j;
-	int mark;
+	int	j;
+	int	mark;
 
 	j = 0;
 	mark = 0;
 	while (i < s->piece_x_ini)
 	{
-		while(j < s->piece_y_ini && i < s->piece_x_ini)
+		while (j < s->piece_y_ini && i < s->piece_x_ini)
 		{
 			if (s->piece[i][j] == '*')
 			{
@@ -108,39 +108,24 @@ char  	**cut_bottom_top(struct s_stru *s, int i, int x, char **tab)
 	return (tab);
 }
 
-void 	free_tab(char ***tab)
+int		cut_piece(struct s_stru *s)
 {
-	int f;
-
-	while (*tab[f])
-		f++;
-	while (f >= 0)
-	{
-		ft_strdel(&(*tab[f]));
-		f--;
-	}
-}
-
-int 	cut_piece(struct s_stru *s)
-{
-	int i;
-	int j;
-	int x;
-	char **tab;
+	int		i;
+	int		j;
+	int		x;
+	char	**tab;
 
 	i = 0;
 	j = 0;
 	x = 0;
 	s->marker = 0;
 	tab = (char **)malloc(sizeof(char *) * (s->piece_x_ini + 1));
-	
 	s->piece = cut_bottom_top(&(*s), i, x, tab);
 	s->piece_y = s->piece_y_ini;
 	s->piece_x = s->marker;
-	while (cut_left(&(*s),s->piece) != 0)
+	while (cut_left(&(*s), s->piece) != 0)
 		i++;
-	while (cut_right(&(*s),s->piece) != 0)
+	while (cut_right(&(*s), s->piece) != 0)
 		i++;
-	//free_tab(&tab);
 	return (0);
 }
